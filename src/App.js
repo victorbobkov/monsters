@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { CardList } from './components/card-list/card-list.component'
 import './App.css'
+// import {logDOM} from '@testing-library/react'
 
 class App extends Component {
    constructor() {
       super()
 
       this.state = {
-         monsters: []
+         monsters: [],
+         searchField: ''
       }
    }
 
@@ -20,6 +22,15 @@ class App extends Component {
    render() {
       return (
          <div className="App">
+            <input
+               type='search'
+               placeholder='search monsters'
+               onChange={event => {
+                  this.setState({searchField: event.target.value}, () =>
+                     console.log(this.state)
+                  )
+               }}
+            />
             <CardList monsters={this.state.monsters} />
         </div>
       )
